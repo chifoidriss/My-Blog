@@ -1,0 +1,25 @@
+<div class="panel"
+	*ngFor="let post of posts; let i = index"
+	[ngClass]="{'panel-danger': post.loveIts<0,
+				'panel-success': post.loveIts>0,
+				'panel-info': post.loveIts==0}">
+	
+	<div class="panel-heading">
+		<h3 class="panel-title">{{post.title}}
+			<span>Le {{post.created_at | date:'dd MMMM y à HH:mm:ss'}}</span>
+		</h3>	
+	</div>
+	<div class="panel-body">{{post.content}}</div>
+	<div class="panel-footer">
+		<div class="btn-group">
+			<button class="btn btn-success" (click)="onLoveIts(i, 1)">
+				<span class="badge" *ngIf="post.loveIts>0">{{post.loveIts}}</span>
+				Love !!!
+			</button>
+			<button class="btn btn-danger" (click)="onLoveIts(i, -1)">
+				<span class="badge" *ngIf="post.loveIts<0">{{-1*post.loveIts}}</span>
+				Don't love !!!
+			</button>
+		</div>
+	</div>
+</div>
